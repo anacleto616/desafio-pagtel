@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: pagtel-pg
+    restart: always
+    environment:
+      POSTGRES_USER: pagtel
+      POSTGRES_PASSWORD: pagtelpass
+      POSTGRES_DB: pagteldb
+    ports:
+      - 5432:5432
+    volumes:
+      - ./.postgresql_data:/var/lib/postgresql/data
+
+  mongodb:
+    image: mongo:latest
+    container_name: pagtel-mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./.mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=pagtel-mongo-logs
+
+  rabbitmq:
+    image: rabbitmq:latest
+    container_name: pagtel-rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=pagtel
+      - RABBITMQ_DEFAULT_PASS=pagtelpass
