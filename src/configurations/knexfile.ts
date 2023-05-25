@@ -4,9 +4,9 @@ const knexConfig: Knex.Config = {
   client: 'pg',
   connection: {
     host: 'localhost',
-    user: 'your_username',
-    password: 'your_password',
-    database: 'your_database',
+    user: 'pagtel',
+    password: 'pagtelpass',
+    database: 'pagteldb',
   },
   migrations: {
     tableName: 'knex_migrations',
